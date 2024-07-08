@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - GymForYou</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function validateField(url, data, errorElementId) {
+            $.ajax({
+                type: 'POST',
+                url: url,
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function(response) {
+                    const errorElement = document.getElementById(errorElementId);
+                    if (response.valid) {
+                        errorElement.innerText = '';
+                    } else {
+                        errorElement.innerText = response.message;
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            $('input[name="first_name"], input[name="last_name"]').on('blur', function() {
+                const name = $(this).val();
+                validateField('{{ url_for("views.validate_name_route") }}', { name: name }, this.name + '_error');
+            });
+
+            $('input[name="id_number"]').on('blur', function() {
+                const id_number = $(this).val();
+                validateField('{{ url_for("views.validate_id_route") }}', { id_number: id_number }, 'id_number_error');
+            });
+
+            $('input[name="phone_number"]').on('blur', function() {
+                const phone_prefix = $('select[name="phone_prefix"]').val();
+                const phone_number = phone_prefix + $(this).val();
+                validateField('{{ url_for("views.validate_phone_route") }}', { phone: phone_number }, 'phone_error');
+            });
+
+            $('input[name="password"], input[name="confirm_password"]').on('blur', function() {
+                const password = $('input[name="password"]').val();
+                const confirm_password = $('input[name="confirm_password"]').val();
+                validateField('{{ url_for("views.validate_password_route") }}', { password: password, confirm_password: confirm_password }, 'password_error');
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Register</h1>
+    <form method="POST" action="{{ url_for('views.register') }}">
+        <div class="form-group">
+            First Name: <input type="text" name="first_name" required>
+            <span id="first_name_error" class="error"></span>
+        </div>
+        <div class="form-group">
+            Last Name: <input type="text" name="last_name" required>
+            <span id="last_name_error" class="error"></span>
+        </div>
+        <div class="form-group">
+            ID Number: <input type="text" name="id_number" required>
+            <span id="id_number_error" class="error"></span>
+        </div>
+        <div class="form-group">
+            Phone: 
+            <select name="phone_prefix">
+                <option value="052">052</option>
+                <option value="054">054</option>
+                <option value="050">050</option>
+                <option value="053">053</option>
+                <option value="058">058</option>
+            </select>
+            <input type="text" name="phone_number" required>
+            <span id="phone_error" class="error"></span>
+        </div>
+        <div class="form-group">
+            Password: <input type="password" name="password" required>
+            Confirm Password: <input type="password" name="confirm_password" required>
+            <span id="password_error" class="error"></span>
+        </div>
+        <div class="form-group">
+            Birth Date: 
+            <select name="birthdate_day">
+                {% for day in range(1, 32) %}
+                <option value="{{ day }}">{{ day }}</option>
+                {% endfor %}
+            </select>
+            <select name="birthdate_month">
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+            <select name="birthdate_year">
+                {% for year in range(1950, 2021) %}
+                <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            City: 
+            <select name="city">
+                {% for city in cities %}
+                <option value="{{ city.CodeCity }}">{{ city.NameCity }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            Gender: 
+            <select name="gender">
+                {% for gender in genders %}
+                <option value="{{ gender.CodeGender }}">{{ gender.NameGender }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            Weight: <input type="number" name="weight" required>
+        </div>
+        <div class="form-group">
+            Height: <input type="number" name="height" required>
+        </div>
+        <div class="form-group">
+            Level: 
+            <select name="level">
+                {% for level in levels %}
+                <option value="{{ level.CodeLevel }}">{{ level.NameLevel }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            Goal: 
+            <select name="goal">
+                {% for goal in goals %}
+                <option value="{{ goal.CodeGoal }}">{{ goal.NameGoal }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            Trainer: 
+            <select name="trainer">
+                {% for trainer in trainers %}
+                <option value="{{ trainer.Id }}">{{ trainer.Name }} - {{ trainer.Specialty }}: {{ trainer.Description }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input type="submit" value="Register">
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

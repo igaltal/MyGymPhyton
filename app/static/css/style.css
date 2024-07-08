@@ -1,0 +1,163 @@
+/* Base styling for body */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #333;
+    color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header styles */
+header {
+    background-color: #222;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+
+header h1 {
+    margin: 0;
+    color: #61dafb;
+}
+
+/* Navigation link styles */
+nav div.nav-links {
+    margin-top: 10px;
+}
+
+nav div.nav-links a {
+    color: #61dafb;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin: 0 5px;
+    background-color: #444;
+}
+
+nav div.nav-links a:hover, nav div.nav-links a:focus {
+    background-color: #61dafb;
+    color: #000;
+}
+
+/* Main content styles */
+main {
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+}
+
+/* Form styling */
+form {
+    background: #444;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background: #555;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+/* Button styling */
+input[type="submit"] {
+    background-color: #5cb85c;
+    border: none;
+    padding: 12px;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background-color: #4cae4c;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Button link styling */
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #545b62;
+}
+
+/* Error message styling */
+.error {
+    color: #d9534f;
+    margin-top: 5px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #222;
+    color: #aaa;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    border-top: 1px solid #444;
+    margin-top: auto;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    body, header, footer {
+        padding: 10px;
+    }
+
+    nav div.nav-links a {
+        padding: 8px 10px;
+    }
+
+    .btn, input[type="submit"] {
+        padding: 12px 20px;
+    }
+}

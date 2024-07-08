@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard - GymForYou</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome, {{ user['Name'] }}!</h1>
+        <nav>
+            <div class="nav-links">
+                <a href="{{ url_for('views.logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
+                <a href="{{ url_for('views.home') }}"><i class="fa fa-home"></i> Home</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h2>Your Profile</h2>
+        <p><strong>Full Name:</strong> {{ user['Name'] }} {{ user['LastName'] }}</p>
+        <p><strong>ID:</strong> {{ user['Id'] }}</p>
+        <p><strong>Phone:</strong> {{ user['Pelepone'] }}</p>
+        <p><strong>City:</strong> {{ user['City'] }}</p>
+        <p><strong>Birth Date:</strong> {{ user['Thisdata'] }}</p>
+        <p><strong>Gender:</strong> {{ user['Gender'] }}</p>
+        <p><strong>Weight:</strong> {{ user['Weight'] }} kg</p>
+        <p><strong>Height:</strong> {{ user['Height'] }} cm</p>
+        <p><strong>Starting Level:</strong> {{ user['LevelStart'] }}</p>
+        <p><strong>Current Level:</strong> {{ user['LevelNow'] }}</p>
+        <p><strong>Goal:</strong> {{ user['Goal'] }}</p>
+        <p><strong>Trainer ID:</strong> {{ user['Trainer'] }}</p>
+        <p><strong>Rank:</strong> {{ user['Rank'] }}</p>
+        <p><strong>Progress:</strong> {{ user['Itkadmot'] }}</p>
+        <section class="call-to-action">
+            <a href="#" class="btn btn-primary">View Training Plan</a>
+            <a href="#" class="btn btn-secondary">Update Profile</a>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>© 2024 GymForYou. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

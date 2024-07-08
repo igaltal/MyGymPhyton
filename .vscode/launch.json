@@ -1,0 +1,58 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Flask",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "flask",
+            "env": {
+                "FLASK_APP": "app.py",
+                "FLASK_DEBUG": "1"
+            },
+            "args": [
+                "run",
+                "--no-debugger",
+                "--no-reload"
+            ],
+            "jinja": true
+        },
+        {
+            "name": "Launch and Debug Hosted Blazor WebAssembly App",
+            "type": "blazorwasm",
+            "request": "launch",
+            "hosted": true,
+            "program": "${workspaceFolder}/bin/Debug/<target-framework>/<project-name.dll>",
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Attach to Chrome",
+            "type": "pwa-chrome",
+            "request": "attach",
+            "port": 9222,
+            "url": "http://localhost:5000",
+            "webRoot": "${workspaceFolder}/path/to/your/client/code"
+        },
+        {
+            "name": "Python: Flask with debugpy",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/run.py",
+            "args": [],
+            "env": {
+                "FLASK_APP": "run.py",
+                "FLASK_ENV": "development"
+            },
+            "envFile": "${workspaceFolder}/.env",
+            "jinja": true,
+            "justMyCode": true
+        }
+    ]
+}

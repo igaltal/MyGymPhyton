@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - GymForYou</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>GymForYou</h1>
+        <nav>
+            <div class="nav-links">
+                {% if 'Id' in session %}
+                    <span class="welcome-message">Welcome, {{ session['Name'] }}!</span>
+                    <a href="{{ url_for('views.logout') }}" class="btn btn-primary"><i class="fa fa-sign-out"></i> Logout</a>
+                {% else %}
+                    <a href="{{ url_for('views.login') }}" class="btn btn-primary"><i class="fa fa-sign-in"></i> Login</a>
+                    <a href="{{ url_for('views.register') }}" class="btn btn-primary"><i class="fa fa-user-plus"></i> Register</a>
+                {% endif %}
+                <a href="{{ url_for('views.users') }}" class="btn btn-primary"><i class="fa fa-users"></i> Users</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="gym-intro">
+            <h2>Explore Our Gym Facilities</h2>
+            <p>Join us to enhance your fitness journey with expert guidance and premium equipment.</p>
+            {% if 'Id' in session %}
+                <p>Check out your personalized <a href="{{ url_for('views.user_dashboard') }}" class="btn btn-primary">Dashboard</a>.</p>
+            {% endif %}
+        </section>
+        <section class="call-to-action">
+            <a href="#" class="btn btn-primary">View Classes</a>
+            <a href="#" class="btn btn-secondary">Meet Our Trainers</a>            
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>© 2024 GymForYou. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

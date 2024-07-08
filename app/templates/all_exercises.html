@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('views.home') }}">Home</a>
+        {% if 'Id' in session %}
+            <span class="navbar-text">Welcome, {{ session['Name'] }}!</span>
+            <a class="nav-link" href="{{ url_for('views.logout') }}">Logout</a>
+        {% else %}
+            <a class="nav-link" href="{{ url_for('views.login') }}">Login</a>
+            <a class="nav-link" href="{{ url_for('views.register') }}">Register</a>
+        {% endif %}
+    </nav>
+    <div class="container mt-4">
+        <h1>Exercise List</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exercise in exercises %}
+                <tr>
+                    <td>{{ exercise.name_exercises }}</td>
+                    <td>{{ exercise.description }}</td>
+                    <td>{{ exercise.work_on }}</td>
+                    <td>
+                        <form method="post" action="{{ url_for('program.add_exercise') }}">
+                            <input type="hidden" name="exercise_id" value="{{ exercise.number_exercises }}">
+                            <input type="hidden" name="coaching_id" value="{{ session['Id'] }}">
+                            <button type="submit" class="btn btn-primary">Add to Plan</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

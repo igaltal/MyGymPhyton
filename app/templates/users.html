@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users - GymForYou</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <center>
+        <h1>Users List</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                    <th>Date</th>
+                    <th>Password</th>
+                    <th>Gender</th>
+                    <th>Weight</th>
+                    <th>Height</th>
+                    <th>Level Start</th>
+                    <th>Level Now</th>
+                    <th>Goal</th>
+                    <th>Trainer</th>
+                    <th>Rank</th>
+                    <th>Itkadmot</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.Id }}</td>
+                    <td>{{ user.Name }}</td>
+                    <td>{{ user.LastName }}</td>
+                    <td>{{ user.Pelepone }}</td>
+                    <td>{{ user.NumCity }}</td>
+                    <td>{{ user.Thisdata }}</td>
+                    <td>{{ user.Password }}</td>
+                    <td>{{ user.Gender }}</td>
+                    <td>{{ user.Weight }}</td>
+                    <td>{{ user.Height }}</td>
+                    <td>{{ user.LevelStart }}</td>
+                    <td>{{ user.LevelNow }}</td>
+                    <td>{{ user.Goal }}</td>
+                    <td>{{ user.Trainer }}</td>
+                    <td>{{ user.Rank }}</td>
+                    <td>{{ user.Itkadmot }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+</body>
+</html>
